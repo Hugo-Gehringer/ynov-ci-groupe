@@ -98,9 +98,7 @@
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css",
-              "node_modules/ngx-toastr/toastr.css",
-              "tailwind.config.js"
-            ],
+              "node_modules/ngx-toastr/toastr.css"],
             "scripts": []
           }
         },

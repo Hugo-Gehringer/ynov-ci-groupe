@@ -1,0 +1,55 @@
+<div class="form-container">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <mat-card>
+      <mat-card-content class="grid grid-cols-2 gap-4">
+        <mat-form-field class="col-span-1 mb-4 bg-red-500">
+          <mat-label>Prénom</mat-label>
+          <input matInput type="text" id="firstName" formControlName="firstName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <mat-error *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.dirty">
+            Prénom is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-span-1 mb-4">
+          <mat-label>Nom</mat-label>
+          <input matInput type="text" id="lastName" formControlName="lastName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <mat-error *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.dirty">
+            Nom is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-span-1 mb-4">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" id="email" formControlName="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <mat-error *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.dirty">
+            Email is required and must be a valid email address
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-span-1 mb-4">
+          <mat-label>Date de naissance</mat-label>
+          <input matInput type="date" id="birthDate" formControlName="birthDate" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <mat-error *ngIf="userForm.get('birthDate')?.invalid && userForm.get('birthDate')?.dirty">
+            Date de naissance is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-span-1 mb-4">
+          <mat-label>Ville</mat-label>
+          <input matInput type="text" id="city" formControlName="city" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <mat-error *ngIf="userForm.get('city')?.invalid && userForm.get('city')?.dirty">
+            Ville is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-span-1 mb-4">
+          <mat-label>Code postal</mat-label>
+          <input matInput type="text" id="postalCode" formControlName="postalCode" maxlength="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <mat-error *ngIf="userForm.get('postalCode')?.invalid && userForm.get('postalCode')?.dirty">
+            Code postal is required and must be 5 characters long
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Envoyer
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

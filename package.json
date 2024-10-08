@@ -1,16 +1,16 @@
 {
   "name": "ynov-deploiement-formulaire-angular",
-  "homepage": "https://hugo-gehringer.github.io/Deploiement-angular-form/",
+  "homepage": "https://hugo-gehringer.github.io/deploiement-angular-form/",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href=/Deploiement-angular-form/",
+    "build": "ng build --base-href=/deploiement-angular-form/",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist/ynov-deploiement-formulaire-angular --repo https://github.com/Hugo-Gehringer/Deploiement-angular-form.git"
+    "deploy": "gh-pages -d dist/ynov-deploiement-formulaire-angular --repo https://github.com/Hugo-Gehringer/deploiement-angular-form.git"
   },
   "private": true,
   "dependencies": {

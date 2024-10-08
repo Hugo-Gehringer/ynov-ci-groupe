@@ -1,5 +1,6 @@
 {
   "name": "ynov-deploiement-formulaire-angular",
+  "homepage": "https://hugo-gehringer.github.io/Deploiement-angular-form/",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build --repo https://github.com/Hugo-Gehringer/Deploiement-angular-form.git"
+    "deploy": "gh-pages -d dist/ynov-deploiement-formulaire-angular --repo https://github.com/Hugo-Gehringer/Deploiement-angular-form.git"
   },
   "private": true,
   "dependencies": {

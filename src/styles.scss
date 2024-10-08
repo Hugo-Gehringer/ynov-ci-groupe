@@ -1,0 +1,14 @@
+@import 'ngx-toastr/toastr';
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+
+  form {
+    width: 100%;
+    max-width: 800px;
+    min-width: 300px;
+  }
+}

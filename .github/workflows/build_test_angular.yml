@@ -1,7 +1,7 @@
 name: Build and test angular app
-on : 
+on :
   push:
-    branches: [main]    
+    branches: [main]
   pull_request:
     branches: [main]
 jobs:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x,21.x]
+        node-version: [20.x]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{matrix.node-version}}
@@ -18,6 +18,25 @@ jobs:
           node-version: ${{matrix.node-version}}
       - name : npm ci, build and test
         run: |
-          npm ci 
+          npm ci
           npm run build --if-present
           npm test
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v3
+        with:
+          path: dist
+          if-no-files-found: error
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deplyment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    needs: build_test
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

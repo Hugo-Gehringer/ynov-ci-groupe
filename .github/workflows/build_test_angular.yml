@@ -28,7 +28,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          path: dist
+          path: dist/ynov-deploiement-formulaire-angular/browser
           if-no-files-found: error
 
   deploy:

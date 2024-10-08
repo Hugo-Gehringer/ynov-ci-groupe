@@ -27,6 +27,11 @@ jobs:
         with:
           path: dist
           if-no-files-found: error
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: dist
+          if-no-files-found: error
   deploy:
     environment:
       name: github-pages

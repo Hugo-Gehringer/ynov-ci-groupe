@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --code-coverage --watch=false",
+    "test": "ng test  --watch=false",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist/ynov-deploiement-formulaire-angular --repo https://github.com/Hugo-Gehringer/Deploiement-angular-form.git"
   },

@@ -1,23 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, RenderResult, screen } from '@testing-library/angular';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserFormComponent } from './user-form.component';
 
 describe('UserFormComponent', () => {
-  let component: UserFormComponent;
-  let fixture: ComponentFixture<UserFormComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [UserFormComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(UserFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await render(UserFormComponent, {
+      imports: [ReactiveFormsModule, ToastrModule.forRoot(), BrowserAnimationsModule],
+    });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have a lastName input field',  () => {
+    const lastNameInput = screen.getByLabelText('Prenom');
+    expect(lastNameInput).toBeTruthy();
   });
 });

@@ -2,45 +2,51 @@
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 <!--      <mat-card-content class="grid grid-cols-2 gap-4">-->
         <div class=" bg-red-500">
-          <label class="mat-form-field" for="firstName">Prenom</label>
+          <label class="mat-form-field" for="firstName">Prénom</label>
           <input matInput type="text" id="firstName" formControlName="firstName">
-          <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.dirty" class="error-message" >
-            Prénom is required
+          <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched" class="error-message" >
+            Veuillez saisir un Prénom
           </div>
         </div>
-        <div class="">
+        <div >
           <label id="lastNameLabel" for="lastName">Nom :</label>
           <input matInput type="text" id="lastName" formControlName="lastName">
-          <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.dirty" class="error-message" >
-            Nom is required
+          <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched" class="error-message" >
+            Veuillez saisir un Nom
           </div>
         </div>
-        <div class="">
+        <div >
           <label>Email</label>
           <input matInput type="email" id="email" formControlName="email">
-          <div  *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.dirty" class="error-message">
-            Email is required and must be a valid email address
+          <div *ngIf="userForm.get('email')?.errors?.['required'] && userForm.get('email')?.touched" class="error-message">
+            Veuillez saisir un Email
+          </div>
+          <div *ngIf="userForm.get('email')?.errors?.['email'] && userForm.get('email')?.touched" class="error-message">
+            Veuillez saisir un Email valide
           </div>
         </div>
-        <div class="">
+        <div >
           <label>Date de naissance</label>
           <input matInput type="date" id="birthDate" formControlName="birthDate">
-          <div  *ngIf="userForm.get('birthDate')?.invalid && userForm.get('birthDate')?.dirty" class="error-message">
-            Date de naissance is required
+          <div *ngIf="userForm.get('birthDate')?.errors?.['required'] && userForm.get('birthDate')?.touched" class="error-message">
+            Veuillez saisir une Date de naissance
+          </div>
+          <div *ngIf="userForm.get('birthDate')?.errors?.['ageBelow18'] && userForm.get('birthDate')?.touched" class="error-message">
+            Vous devez être majeur
           </div>
         </div>
-        <div class="">
+        <div >
           <label>Ville</label>
           <input matInput type="text" id="city" formControlName="city">
-          <div *ngIf="userForm.get('city')?.invalid && userForm.get('city')?.dirty" class="error-message">
-            Ville is required
+          <div *ngIf="userForm.get('city')?.invalid && userForm.get('city')?.touched" class="error-message">
+            Veuillez saisir une Ville
           </div>
         </div>
-        <div class="">
+        <div >
           <label>Code postal</label>
           <input matInput type="text" id="postalCode" formControlName="postalCode" maxlength="5">
-          <div *ngIf="userForm.get('postalCode')?.invalid && userForm.get('postalCode')?.dirty" class="error-message">
-            Code postal is required and must be 5 characters long
+          <div *ngIf="userForm.get('postalCode')?.errors?.['invalidLength'] && userForm.get('postalCode')?.touched" class="error-message">
+            Veuillez saisir un Code postal valide (5 chiffres)
           </div>
         </div>
         <button mat-raised-button color="primary" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">

@@ -56,13 +56,15 @@ export class UserFormComponent implements  OnInit{
 
 
   onSubmit() {
-    // if (this.userForm.valid) {
-      this.userService.addUser(this.userForm.value);
+    if (this.userForm.invalid) {
+      this.userForm.markAllAsTouched();
+      return;
+    }
+    this.userService.addUser(this.userForm.value);
       this.users = this.userService.getUsers();
       this.userForm.reset();
       this.toastr.success('Utilisateur ajouté avec succès', 'Succès');
     }
-  // }
 }
 
 

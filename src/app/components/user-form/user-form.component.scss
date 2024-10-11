@@ -2,7 +2,7 @@
 
 .form-container {
   max-width: 600px;
-  margin: 0 auto;
+  margin-top: 100px;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -12,7 +12,6 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
 label {
@@ -58,5 +57,4 @@ button:focus {
 .error-message {
   color: #e74c3c;
   font-size: 0.875em;
-  margin-top: 4px;
 }

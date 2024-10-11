@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user-service.service';
+import {User, UserService} from '../../services/user-service.service';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
@@ -43,7 +43,6 @@ export class UserFormComponent implements OnInit {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) return null;
       const age = this.userService.calculateAge(new Date(control.value));
-      console.debug(age);
       return age < 18 ? { ageBelow18: true } : null;
     };
   }
@@ -63,12 +62,26 @@ export class UserFormComponent implements OnInit {
   /**
    * Handles the form submission.
    */
-  onSubmit() {
+  async onSubmit() {
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
       return;
     }
-    this.userForm.reset();
-    this.toastr.success('Utilisateur ajouté avec succès', 'Succès');
+    const user: User = {
+      firstName: this.userForm.get('firstName')?.value,
+      lastName: this.userForm.get('lastName')?.value,
+      email: this.userForm.get('email')?.value,
+      birthDate: new Date(this.userForm.get('birthDate')?.value),
+      city: this.userForm.get('city')?.value,
+      postalCode: this.userForm.get('postalCode')?.value
+    };
+    try {
+      await this.userService.addUser(user);
+      this.toastr.success('Utilisateur ajouté avec succès', 'Succès');
+      // this.userForm.reset();
+    } catch (error) {
+      console.log(error);
+      this.toastr.error('Erreur lors de l\'ajout de l\'utilisateur', 'Erreur');
+    }
   }
 }

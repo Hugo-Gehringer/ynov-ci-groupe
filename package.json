@@ -10,7 +10,8 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist/ynov-deploiement-formulaire-angular --repo https://github.com/Hugo-Gehringer/deploiement-angular-form.git"
+    "deploy": "gh-pages -d dist/ynov-deploiement-formulaire-angular --repo https://github.com/Hugo-Gehringer/deploiement-angular-form.git",
+    "jsdoc": "typedoc"
   },
   "private": true,
   "dependencies": {

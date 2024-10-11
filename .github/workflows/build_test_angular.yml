@@ -48,11 +48,6 @@ jobs:
           npm ci
           npm run build --if-present
           npm test
-#      - name: docs
-#        run: |
-#          mkdir -p deploy
-#          cp -r front/dist/ynov-deploiement-formulaire-angular/browser/* deploy/
-#          cp -r front/docs deploy/docs
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
@@ -60,7 +55,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: front/dist/ynov-deploiement-formulaire-angular/browser
+          path: dist/ynov-deploiement-formulaire-angular/browser
 
   deploy:
     environment:
@@ -83,6 +78,6 @@ jobs:
 
       - name: Deploy docs to GitHub Pages
         uses: actions/deploy-pages@v2
-#        with:
-#          path: docs
-#          prefix: docs
+        with:
+          path: front/docs
+          prefix: docs

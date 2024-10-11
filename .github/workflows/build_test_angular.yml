@@ -84,6 +84,6 @@ jobs:
 
       - name: Deploy docs to GitHub Pages
         uses: actions/deploy-pages@v2
-        with:
+#        with:
 #          path: docs
 #          prefix: docs

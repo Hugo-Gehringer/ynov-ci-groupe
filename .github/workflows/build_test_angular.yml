@@ -47,7 +47,7 @@ jobs:
         run: |
           mkdir -p deploy
           cp -r dist/ynov-deploiement-formulaire-angular/browser/* deploy/
-          cp -r /docs deploy/docs
+          cp -r docs deploy/docs
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3

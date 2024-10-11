@@ -5,48 +5,48 @@
           <label class="mat-form-field" for="firstName">Prénom</label>
           <input matInput type="text" id="firstName" formControlName="firstName">
           <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched" class="error-message" >
-            Veuillez saisir un Prénom
+            Veuillez saisir un prénom
           </div>
         </div>
         <div >
           <label id="lastNameLabel" for="lastName">Nom :</label>
           <input matInput type="text" id="lastName" formControlName="lastName">
           <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched" class="error-message" >
-            Veuillez saisir un Nom
+            Veuillez saisir un nom
           </div>
         </div>
         <div >
-          <label>Email</label>
+          <label for="email">Email</label>
           <input matInput type="email" id="email" formControlName="email">
           <div *ngIf="userForm.get('email')?.errors?.['required'] && userForm.get('email')?.touched" class="error-message">
-            Veuillez saisir un Email
+            Veuillez saisir un email
           </div>
           <div *ngIf="userForm.get('email')?.errors?.['email'] && userForm.get('email')?.touched" class="error-message">
-            Veuillez saisir un Email valide
+            Veuillez saisir un email valide
           </div>
         </div>
         <div >
-          <label>Date de naissance</label>
+          <label for="birthDate">Date de naissance</label>
           <input matInput type="date" id="birthDate" formControlName="birthDate">
           <div *ngIf="userForm.get('birthDate')?.errors?.['required'] && userForm.get('birthDate')?.touched" class="error-message">
-            Veuillez saisir une Date de naissance
+            Veuillez saisir une date de naissance
           </div>
           <div *ngIf="userForm.get('birthDate')?.errors?.['ageBelow18'] && userForm.get('birthDate')?.touched" class="error-message">
             Vous devez être majeur
           </div>
         </div>
         <div >
-          <label>Ville</label>
+          <label for="city">Ville</label>
           <input matInput type="text" id="city" formControlName="city">
           <div *ngIf="userForm.get('city')?.invalid && userForm.get('city')?.touched" class="error-message">
-            Veuillez saisir une Ville
+            Veuillez saisir une ville
           </div>
         </div>
         <div >
-          <label>Code postal</label>
+          <label for="postalCode">Code postal</label>
           <input matInput type="text" id="postalCode" formControlName="postalCode" maxlength="5">
           <div *ngIf="userForm.get('postalCode')?.errors?.['invalidLength'] && userForm.get('postalCode')?.touched" class="error-message">
-            Veuillez saisir un Code postal valide (5 chiffres)
+            Veuillez saisir un code postal valide avec 5 chiffres
           </div>
         </div>
         <button mat-raised-button color="primary" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">

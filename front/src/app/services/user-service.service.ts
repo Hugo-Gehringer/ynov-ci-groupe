@@ -54,7 +54,7 @@ export class UserService {
         throw new Error(`Failed to add user: ${response.statusText}`);
       }
     } catch (error) {
-      console.error('Error adding user:', error);
+      // console.error('Error adding user:', error);
       throw error;
     }
   }

@@ -82,4 +82,122 @@ describe('UserServiceService', () => {
       expect(service.calculateAge(user.birthDate)).toBe(ageThisYear);
     });
   });
+
+  describe('addUser', () => {
+    const user: User = {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john.doe@example.com',
+      birthDate: new Date('2000-01-01'),
+      city: 'Paris',
+      postalCode: '75001'
+    };
+
+    it('should add a user successfully', async () => {
+      globalThis.fetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: jest.fn().mockResolvedValue({})
+      });
+
+      try {
+        await service.addUser(user);
+        expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user)
+        });
+      } catch (error) {
+        // This block should not be executed
+        expect(error).toBeUndefined();
+      }
+    });
+
+    it('should throw an error if adding a user fails', async () => {
+      globalThis.fetch = jest.fn().mockResolvedValue({
+        ok: false,
+        statusText: 'Internal Server Error'
+      });
+
+      try {
+        await service.addUser(user);
+      } catch (error) {
+        expect(error).toEqual(new Error('Failed to add user: Internal Server Error'));
+      }
+      expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      });
+    });
+
+    it('should throw an error if fetch throws an error', async () => {
+      globalThis.fetch = jest.fn().mockRejectedValue(new Error('Network Error'));
+
+      try {
+        await service.addUser(user);
+      } catch (error) {
+        expect(error).toEqual(new Error('Network Error'));
+      }
+      expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      });
+    });
+  });
+
+  describe('getUsers', () => {
+    it('should fetch the list of users successfully', async () => {
+      const mockUsers: User[] = [
+        {
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'john.doe@example.com',
+          birthDate: new Date('2000-01-01'),
+          city: 'Paris',
+          postalCode: '75001'
+        }
+      ];
+
+      globalThis.fetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: jest.fn().mockResolvedValue(mockUsers)
+      });
+
+      const users = await service.getUsers();
+      expect(users).toEqual(mockUsers);
+      expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users');
+    });
+
+    it('should throw an error if fetching users fails', async () => {
+      globalThis.fetch = jest.fn().mockResolvedValue({
+        ok: false,
+        statusText: 'Internal Server Error'
+      });
+
+      try {
+        await service.getUsers();
+      } catch (error) {
+        expect(error).toEqual(new Error('Failed to fetch users'));
+      }
+      expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users');
+    });
+
+    it('should throw an error if fetch throws an error', async () => {
+      globalThis.fetch = jest.fn().mockRejectedValue(new Error('Network Error'));
+
+      try {
+        await service.getUsers();
+      } catch (error) {
+        expect(error).toEqual(new Error('Network Error'));
+      }
+      expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users');
+    });
+  });
 });

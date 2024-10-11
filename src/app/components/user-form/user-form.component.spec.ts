@@ -13,7 +13,7 @@ describe('UserFormComponent', () => {
   });
 
   it('should have a lastName input field',  () => {
-    const lastNameInput = screen.getByLabelText('Prenom');
+    const lastNameInput = screen.getByLabelText('Prénom');
     expect(lastNameInput).toBeTruthy();
   });
 });

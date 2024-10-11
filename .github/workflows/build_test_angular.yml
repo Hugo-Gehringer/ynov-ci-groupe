@@ -63,7 +63,7 @@ jobs:
       - name: Generate documentation
         run: npm run jsdoc
       - name: Upload docs artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-pages-artifact@v2
         with:
           name: docs
           path: docs

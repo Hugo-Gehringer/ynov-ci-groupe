@@ -1,29 +1,16 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private users: User[] = [];
 
-  getUsers(): User[] {
-    return this.users;
-  }
-
-  addUser(user: User) {
-    this.users.push(user);
-  }
-
-  calculateAge(p: Date){
-    const today = new Date();
-    console.debug(p)
-    let age = today.getFullYear() - p.getUTCFullYear();
-    const monthDifference = today.getMonth() - p.getMonth();
-    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < p.getDate())) {
-      age--;
+  calculateAge(p: Date) {
+    if (isNaN(p.getTime())) {
+      throw new Error('Invalid date');
     }
-
-    return age;
+    const today = new Date();
+    return today.getFullYear() - p.getUTCFullYear();
   }
 }
 

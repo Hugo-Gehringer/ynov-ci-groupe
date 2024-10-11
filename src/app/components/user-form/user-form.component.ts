@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {User, UserService} from '../../services/user-service.service';
+import {UserService} from '../../services/user-service.service';
 import {
   AbstractControl,
   FormControl,
   FormGroup,
-  NgForm,
   ValidationErrors,
   ValidatorFn,
   Validators
@@ -17,12 +16,10 @@ import {ToastrService} from 'ngx-toastr';
   styleUrl: './user-form.component.scss'
 })
 export class UserFormComponent implements  OnInit{
-  users: User[] = [];
   userForm!: FormGroup;
 
 
   constructor(private userService: UserService, private toastr: ToastrService) {
-    this.users = this.userService.getUsers();
   }
 
   ngOnInit(): void {
@@ -53,17 +50,13 @@ export class UserFormComponent implements  OnInit{
     };
   }
 
-
-
   onSubmit() {
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
       return;
     }
-    this.userService.addUser(this.userForm.value);
-      this.users = this.userService.getUsers();
-      this.userForm.reset();
-      this.toastr.success('Utilisateur ajouté avec succès', 'Succès');
+    this.userForm.reset();
+    this.toastr.success('Utilisateur ajouté avec succès', 'Succès');
     }
 }
 

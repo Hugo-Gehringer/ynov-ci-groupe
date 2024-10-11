@@ -1,5 +1,7 @@
 # YnovDeploiementFormulaireAngular
 
+[![codecov](https://codecov.io/gh/Hugo-Gehringer/deploiement-angular-form/graph/badge.svg?token=A1NUV73I0R)](https://codecov.io/gh/Hugo-Gehringer/deploiement-angular-form)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
 
 ## Development server

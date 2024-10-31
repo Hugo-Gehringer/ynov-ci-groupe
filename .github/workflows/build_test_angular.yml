@@ -77,8 +77,8 @@ jobs:
           path: front/dist/ynov-deploiement-formulaire-angular/browser
 
       - name: build and publish package on NPM
+        working-directory: front
         run: |
-          cd front
           git config --global user.email "hugo.gehringer@free.fr"
           git config --global user.name "Hugo Gehringer"
           npm run build-npm

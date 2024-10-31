@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export default class AppComponent {
+export class AppComponent {
   title = 'ynov-deploiement-formulaire-angular';
 }

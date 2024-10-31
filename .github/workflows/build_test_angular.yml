@@ -64,8 +64,8 @@ jobs:
       - name: Authenticate with npm
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
       - name: build and publish package on NPM
-        working-directory: front
         run: |
+          cd front
           git config --global user.email "hugo.gehringer@free.fr"
           git config --global user.name "Hugo Gehringer"
           npm run build-npm

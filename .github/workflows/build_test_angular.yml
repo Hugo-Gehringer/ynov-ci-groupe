@@ -57,6 +57,16 @@ jobs:
         with:
           path: front/dist/ynov-deploiement-formulaire-angular/browser
 
+      - name: build and publish package on NPM
+        run: |
+          cd front
+          git config --global user.email "hugo.gehringer@free.fr"
+          git config --global user.name "Hugo Gehringer"
+          npm run build-npm
+          npm version patch
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   deploy:
     environment:
       name: github-pages
@@ -75,17 +85,6 @@ jobs:
         uses: actions/deploy-pages@v2
         with:
           path: front/dist/ynov-deploiement-formulaire-angular/browser
-
-      - name: build and publish package on NPM
-        working-directory: front
-        run: |
-          git config --global user.email "hugo.gehringer@free.fr"
-          git config --global user.name "Hugo Gehringer"
-          npm run build-npm
-          npm version patch
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Deploy docs to GitHub Pages
         uses: actions/deploy-pages@v2

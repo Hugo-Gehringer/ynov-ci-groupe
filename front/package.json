@@ -1,7 +1,7 @@
 {
-  "name": "ynov-deploiement-formulaire-angular",
+  "name": "hugo-gehringer-cicd",
   "homepage": "https://hugo-gehringer.github.io/deploiement-angular-form/",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,9 +11,10 @@
     "test:coverage": "jest --coverage",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist/ynov-deploiement-formulaire-angular --repo https://github.com/Hugo-Gehringer/deploiement-angular-form.git",
-    "jsdoc": "typedoc"
+    "jsdoc": "typedoc",
+    "build-npm": "NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src --out-dir dist --copy-files"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^18.2.7",
     "@angular/cdk": "^18.2.7",
@@ -28,6 +29,7 @@
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.13",
     "angular-cli-ghpages": "^2.0.1",
+    "hugo-gehringer-cicd": "^0.0.1",
     "jest": "^29.7.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
@@ -38,7 +40,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.7",
-    "@angular/cli": "^18.2.7",
+    "@angular/cli": "^18.2.8",
     "@angular/compiler-cli": "^18.2.0",
     "@testing-library/angular": "^17.3.1",
     "@testing-library/dom": "^10.4.0",

@@ -69,7 +69,6 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
   deploy:
     environment:
       name: github-pages

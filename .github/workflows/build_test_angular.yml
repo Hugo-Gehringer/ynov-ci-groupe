@@ -57,6 +57,9 @@ jobs:
         with:
           path: front/dist/ynov-deploiement-formulaire-angular/browser
 
+  publish_npm:
+    runs-on: ubuntu-latest
+    steps:
       - name: Authenticate with npm
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
       - name: build and publish package on NPM
@@ -69,6 +72,7 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
   deploy:
     environment:
       name: github-pages

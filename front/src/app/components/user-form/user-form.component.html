@@ -44,7 +44,7 @@
         </div>
         <div >
           <label for="postalCode">Code postal</label>
-          <input type="text" id="postalCode" formControlName="postalCode" maxlength="5">
+          <input type="number" id="postalCode" formControlName="postalCode" maxlength="5">
           <div *ngIf="userForm.get('postalCode')?.errors?.['invalidLength'] && userForm.get('postalCode')?.touched" class="error-message">
             Veuillez saisir un code postal valide avec 5 chiffres
           </div>

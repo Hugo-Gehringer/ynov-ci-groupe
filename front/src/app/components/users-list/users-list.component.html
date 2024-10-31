@@ -1,1 +1,12 @@
-<p>users-list works!</p>
+<div *ngIf="userService.users && userService.users.length > 0; else noUsers">
+  <ul>
+    <li *ngFor="let user of userService.users">
+      <h3>{{ user.firstName }} {{user.lastName}}</h3>
+      <p>Email: {{ user.email }}</p>
+      <p>birthdate: {{ user.birthDate }}</p>
+    </li>
+  </ul>
+</div>
+<ng-template #noUsers>
+  <p>No users available.</p>
+</ng-template>

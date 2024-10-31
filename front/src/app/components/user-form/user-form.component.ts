@@ -79,6 +79,7 @@ export class UserFormComponent implements OnInit {
       await this.userService.addUser(user);
       this.userForm.reset();
       this.toastr.success('Utilisateur ajouté avec succès', 'Succès');
+      await this.userService.getUsers();
     } catch (error) {
       console.log(error);
       // this.toastr.error('Erreur lors de l\'ajout de l\'utilisateur', 'Erreur');

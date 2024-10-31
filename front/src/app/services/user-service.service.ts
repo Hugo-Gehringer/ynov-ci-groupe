@@ -7,6 +7,7 @@ import {Injectable} from '@angular/core';
 })
 export class UserService {
   private apiUrl = 'http://localhost:3000/users';
+  public users: User[] = [];
 
   constructor( ) {}
 
@@ -16,7 +17,7 @@ export class UserService {
    * @returns {number} The calculated age.
    * @throws Will throw an error if the birthDate is invalid.
    */
-  calculateAge(birthDate: Date) {
+  calculateAge(birthDate: Date): number {
     if (isNaN(birthDate.getTime())) {
       throw new Error('Invalid date');
     }
@@ -33,7 +34,8 @@ export class UserService {
     if (!response.ok) {
       throw new Error('Failed to fetch users');
     }
-    return response.json();
+    this.users = await response.json();
+    return this.users;
   }
 
   /**
@@ -54,7 +56,6 @@ export class UserService {
         throw new Error(`Failed to add user: ${response.statusText}`);
       }
     } catch (error) {
-      // console.error('Error adding user:', error);
       throw error;
     }
   }

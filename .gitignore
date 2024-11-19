@@ -6,6 +6,7 @@
 /front/out-tsc
 /front/bazel-out
 
+/back/mongoDB/data
 # Node
 /front/node_modules
 /back/node_modules

@@ -25,16 +25,18 @@ const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     email: { type: String, unique: true },
+    password: String,
     birthDate: Date,
     city: String,
     postalCode: String,
+    isAdmin: Boolean
 });
 
 const User = mongoose.model('user', userSchema);
 
 // Create a new user
 app.post('/users', (req, res) => {
-    const { firstName, lastName, email, birthDate, city, postalCode } = req.body;
+    const { firstName, lastName, email,password, birthDate, city, postalCode,isAdmin } = req.body;
 
     const newUser = new User({
         firstName,
@@ -43,6 +45,7 @@ app.post('/users', (req, res) => {
         birthDate,
         city,
         postalCode,
+        isAdmin
     });
 
     newUser.save()
@@ -74,9 +77,9 @@ app.get('/users/:id', (req, res) => {
 // Update a user
 app.put('/users/:id', (req, res) => {
     const userId = req.params.id;
-    const { firstName, lastName, email, birthDate, city, postalCode } = req.body;
+    const { firstName, lastName, email,password, birthDate, city, postalCode,isAdmin } = req.body;
 
-    User.findByIdAndUpdate(userId, { firstName, lastName, email, birthDate, city, postalCode }, { new: true })
+    User.findByIdAndUpdate(userId, { firstName, lastName, email,password, birthDate, city, postalCode,isAdmin }, { new: true })
         .then(user => {
             if (!user) {
                 return res.status(404).json({ error: 'User not found' });

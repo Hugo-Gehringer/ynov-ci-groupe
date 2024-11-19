@@ -20,7 +20,7 @@ async function checkDatabase() {
       console.log("The 'user' collection exists.");
 
       const userCollection = db.collection('user');
-      const adminUser = await userCollection.findOne({ first_name: 'Admin' });
+      const adminUser = await userCollection.findOne({ firstName: 'Admin' });
 
       if (adminUser) {
         console.log("The Admin user exists:", adminUser);

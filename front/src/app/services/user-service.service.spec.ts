@@ -17,12 +17,15 @@ describe('UserServiceService', () => {
 
     it('should return the age of the person', () => {
       const test: User = {
+        id: 1,
         firstName: 'test',
         lastName: 'test',
         email: 'test',
+        password: 'test',
         city: 'test',
         postalCode: '00000',
-        birthDate: new Date('01/04/1999')
+        birthDate: new Date('01/04/1999'),
+        isAdmin: false
       };
       expect(service.calculateAge(test.birthDate)).toBe(25);
     });
@@ -44,36 +47,45 @@ describe('UserServiceService', () => {
 
     it('should throw an error if the birth property is not a Date object', () => {
       const personWithInvalidBirth: User = {
+        id: 1,
         firstName: 'test',
         lastName: 'test',
         email: 'test',
+        password: 'test',
         city: 'test',
         postalCode: '00000',
-        birthDate: 'not a date' as unknown as Date
+        birthDate: 'not a date' as unknown as Date,
+        isAdmin: false
       };
       expect(() => service.calculateAge(personWithInvalidBirth.birthDate)).toThrow();
     });
 
     it('should throw an error if the birth property is an invalid Date object', () => {
       const personWithInvalidBirthDate: User = {
+        id: 1,
         firstName: 'test',
         lastName: 'test',
         email: 'test',
+        password: 'test',
         city: 'test',
         postalCode: '00000',
-        birthDate: new Date('invalid date')
+        birthDate: new Date('invalid date'),
+        isAdmin: false
       };
       expect(() => service.calculateAge(personWithInvalidBirthDate.birthDate)).toThrow();
     });
 
     it('should return the correct age even next year', () => {
       const user: User = {
+        id: 1,
         firstName: 'test',
         lastName: 'test',
         email: 'test',
+        password: 'test',
         city: 'test',
         postalCode: '00000',
-        birthDate: new Date('01-04-1999')
+        birthDate: new Date('01-04-1999'),
+        isAdmin: false
       };
       const today = new Date();
       const thisYear = today.getFullYear();
@@ -85,12 +97,15 @@ describe('UserServiceService', () => {
 
   describe('addUser', () => {
     const user: User = {
+      id: 1,
       firstName: 'John',
       lastName: 'Doe',
       email: 'john.doe@example.com',
+      password: 'password',
       birthDate: new Date('2000-01-01'),
       city: 'Paris',
-      postalCode: '75001'
+      postalCode: '75001',
+      isAdmin: false
     };
 
     it('should add a user successfully', async () => {
@@ -156,12 +171,15 @@ describe('UserServiceService', () => {
     it('should fetch the list of users successfully', async () => {
       const mockUsers: User[] = [
         {
+          id: 1,
           firstName: 'John',
           lastName: 'Doe',
           email: 'john.doe@example.com',
+          password: 'password',
           birthDate: new Date('2000-01-01'),
           city: 'Paris',
-          postalCode: '75001'
+          postalCode: '75001',
+          isAdmin: false
         }
       ];
 

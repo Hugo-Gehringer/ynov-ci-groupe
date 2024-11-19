@@ -3,6 +3,8 @@
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.1",
+    "mongodb": "^6.10.0",
+    "mysql": "^2.18.1",
     "punycode": "^2.3.1",
     "sqlite3": "^5.1.7"
   },

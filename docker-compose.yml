@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  nodejs:
+    build: ./back
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - mongodb
+    volumes:
+      - ./back:/usr/src/app
+
+  mongodb:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./back/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js

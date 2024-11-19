@@ -1,7 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3').verbose();
+var mysql = require('mysql');
 const cors = require('cors');
+var connection = mysql.createConnection({
+    user: 'root',
+    password: 'pwd',
+    database: 'ynov_ci'
+});
 
 const app = express();
 const port = 3000;

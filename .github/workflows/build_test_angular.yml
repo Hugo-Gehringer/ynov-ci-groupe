@@ -21,7 +21,10 @@ jobs:
         run: |
           cd front
           npm install
-
+      - name: Build the stack react
+        run: |
+          docker compose --version
+          docker compose up -d
       - name: Run tests
         run: |
           cd front

@@ -71,9 +71,11 @@ export class UserFormComponent implements OnInit {
       firstName: this.userForm.get('firstName')?.value,
       lastName: this.userForm.get('lastName')?.value,
       email: this.userForm.get('email')?.value,
+      password: 'password',
       birthDate: new Date(this.userForm.get('birthDate')?.value),
       city: this.userForm.get('city')?.value,
-      postalCode: this.userForm.get('postalCode')?.value
+      postalCode: this.userForm.get('postalCode')?.value,
+      isAdmin: false
     };
     try {
       await this.userService.addUser(user);

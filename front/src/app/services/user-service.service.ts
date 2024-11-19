@@ -83,7 +83,6 @@ export class UserService {
 
 
 export interface User {
-  _id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -91,4 +90,5 @@ export interface User {
   birthDate: Date;
   city: string;
   postalCode: string;
+  isAdmin: boolean;
 }

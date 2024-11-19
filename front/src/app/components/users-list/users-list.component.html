@@ -1,11 +1,28 @@
 <div *ngIf="userService.users && userService.users.length > 0; else noUsers">
-  <ul>
-    <li *ngFor="let user of userService.users">
-      <h3>{{ user.firstName }} {{user.lastName}}</h3>
-      <p>Email: {{ user.email }}</p>
-      <p>birthdate: {{ user.birthDate }}</p>
-    </li>
-  </ul>
+  <table class="styled-table">
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Email</th>
+      <th>Ville</th>
+      <th>Code postal</th>
+      <th>Date de naissance</th>
+      <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of userService.users">
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.city }}</td>
+      <td>{{ user.postalCode }}</td>
+      <td>{{ user.birthDate | date: 'd/M/yy' }}</td>
+      <td>{{ user.isAdmin ? 'Admin' : 'User' }}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <ng-template #noUsers>
   <p>No users available.</p>

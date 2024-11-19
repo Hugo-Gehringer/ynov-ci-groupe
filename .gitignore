@@ -12,6 +12,7 @@
 /back/node_modules
 npm-debug.log
 yarn-error.log
+/back/mongoDB/data/*
 
 # IDEs and editors
 *.idea

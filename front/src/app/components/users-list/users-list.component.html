@@ -1,3 +1,4 @@
+<button (click)="disconnectUser()">Déconnexion</button>
 <div *ngIf="userService.users && userService.users.length > 0; else noUsers">
   <table class="styled-table">
     <thead>
@@ -9,6 +10,7 @@
       <th>Code postal</th>
       <th>Date de naissance</th>
       <th>Role</th>
+      <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -20,6 +22,12 @@
       <td>{{ user.postalCode }}</td>
       <td>{{ user.birthDate | date: 'dd/MM/yyyy' }}</td>
       <td>{{ user.isAdmin ? 'Admin' : 'User' }}</td>
+      <td>
+        <button *ngIf="userService.isAdmin()
+      && userService.userId() != user.id
+&& !user.isAdmin" (click)="userService.deleteUser(user.id)">Supprimer
+        </button>
+      </td>
     </tr>
     </tbody>
   </table>

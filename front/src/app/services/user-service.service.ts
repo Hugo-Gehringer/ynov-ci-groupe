@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+
 /**
  * Service to handle user-related operations.
  */
@@ -8,8 +9,10 @@ import {Injectable} from '@angular/core';
 export class UserService {
   private apiUrl = 'http://localhost:3000';
   public users: User[] = [];
+  public user: User | null = null;
 
-  constructor( ) {}
+  constructor() {
+  }
 
   /**
    * Calculates the age based on the birthdate.
@@ -30,7 +33,7 @@ export class UserService {
    * @returns {Promise<User[]>} A promise that resolves to the list of users.
    */
   async getUsers(): Promise<User[]> {
-    const response = await fetch(this.apiUrl+'/users');
+    const response = await fetch(this.apiUrl + '/users');
     if (!response.ok) {
       throw new Error('Failed to fetch users');
     }
@@ -40,12 +43,12 @@ export class UserService {
 
   /**
    * Adds a new user to the API.
-   * @param {User} user - The user to add.
+   * @param {AddUser} user - The user to add.
    * @returns {Promise<void>} A promise that resolves when the user is added.
    */
-  async addUser(user: User): Promise<void> {
+  async addUser(user: AddUser): Promise<void> {
     try {
-      const response = await fetch(this.apiUrl+"/users", {
+      const response = await fetch(this.apiUrl + "/users", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -62,11 +65,11 @@ export class UserService {
 
   /**
    * Delete a user from the API.
-    * @param {number} id - The id of the user to delete.
+   * @param {number} id - The id of the user to delete.
    */
   async deleteUser(id: number): Promise<void> {
     try {
-      const response = await fetch(this.apiUrl+"/users/"+id, {
+      const response = await fetch(this.apiUrl + "/users/" + id, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
@@ -79,26 +82,56 @@ export class UserService {
       throw error;
     }
   }
-  async login(email: string,password:string): Promise<void> {
+
+  async login(email: string, password: string): Promise<void> {
     try {
-      const response = await fetch(this.apiUrl+"/login", {
+      const response = await fetch(this.apiUrl + "/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({email:email,password:password})
+        body: JSON.stringify({email: email, password: password})
       });
       if (!response.ok) {
         throw new Error(`Failed to connect: ${response.statusText}`);
       }
+      this.user = await response.json();
+      console.log(this.user);
     } catch (error) {
       throw error;
     }
+  }
+
+  isConnected(): boolean {
+    return this.user !== null;
+  }
+
+  disconnect() {
+    this.user = null;
+  }
+
+  isAdmin(): boolean {
+    return this.user !== null && this.user.isAdmin;
+  }
+
+  userId(): number | null {
+    return this.user !== null ? this.user.id : null;
   }
 }
 
 
 export interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  birthDate: Date;
+  city: string;
+  postalCode: string;
+  isAdmin: boolean;
+}
+export interface AddUser {
   firstName: string;
   lastName: string;
   email: string;

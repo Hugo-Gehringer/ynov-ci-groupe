@@ -1,55 +1,101 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-var mysql = require('mysql');
+const mongoose = require('mongoose');
 const cors = require('cors');
-var connection = mysql.createConnection({
-    user: 'root',
-    password: 'pwd',
-    database: 'ynov_ci'
-});
 
 const app = express();
 const port = 3000;
-const db = new sqlite3.Database(':memory:');
 
+// Middleware
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors());
 
-// Create User table
-db.serialize(() => {
-    db.run(`CREATE TABLE User (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    firstName TEXT,
-    lastName TEXT,
-    email TEXT,
-    birthDate TEXT,
-    city TEXT,
-    postalCode TEXT
-  )`);
+// Connexion à MongoDB
+mongoose.connect('mongodb://localhost:27017/project_db', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log('Failed to connect to MongoDB', err));
+
+// Définir le modèle User avec Mongoose
+const userSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    email: { type: String, unique: true },
+    birthDate: Date,
+    city: String,
+    postalCode: String,
 });
+
+const User = mongoose.model('User', userSchema);
 
 // Create a new user
 app.post('/users', (req, res) => {
-    console.log(req.body)
     const { firstName, lastName, email, birthDate, city, postalCode } = req.body;
-    const stmt = db.prepare(`INSERT INTO User (firstName, lastName, email, birthDate, city, postalCode) VALUES (?, ?, ?, ?, ?, ?)`);
-    stmt.run(firstName, lastName, email, birthDate, city, postalCode, function(err) {
-        if (err) {
-            return res.status(500).send(err.message);
-        }
-        res.status(201).send({ id: this.lastID });
+
+    const newUser = new User({
+        firstName,
+        lastName,
+        email,
+        birthDate,
+        city,
+        postalCode,
     });
-    stmt.finalize();
+
+    newUser.save()
+        .then(user => res.status(201).json({ id: user._id }))
+        .catch(err => res.status(500).json({ error: err.message }));
 });
 
 // List all users
 app.get('/users', (req, res) => {
-    db.all(`SELECT * FROM User`, [], (err, rows) => {
-        if (err) {
-            return res.status(500).send(err.message);
-        }
-        res.status(200).json(rows);
-    });
+    User.find()
+        .then(users => res.status(200).json(users))
+        .catch(err => res.status(500).json({ error: err.message }));
+});
+
+// Get a user by ID
+app.get('/users/:id', (req, res) => {
+    const userId = req.params.id;
+
+    User.findById(userId)
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+            res.status(200).json(user);
+        })
+        .catch(err => res.status(500).json({ error: err.message }));
+});
+
+// Update a user
+app.put('/users/:id', (req, res) => {
+    const userId = req.params.id;
+    const { firstName, lastName, email, birthDate, city, postalCode } = req.body;
+
+    User.findByIdAndUpdate(userId, { firstName, lastName, email, birthDate, city, postalCode }, { new: true })
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+            res.status(200).json(user);
+        })
+        .catch(err => res.status(500).json({ error: err.message }));
+});
+
+// Delete a user
+app.delete('/users/:id', (req, res) => {
+    const userId = req.params.id;
+
+    User.findByIdAndDelete(userId)
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+            res.status(200).json({ message: 'User deleted successfully' });
+        })
+        .catch(err => res.status(500).json({ error: err.message }));
 });
 
 app.listen(port, () => {

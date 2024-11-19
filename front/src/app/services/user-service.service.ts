@@ -79,6 +79,22 @@ export class UserService {
       throw error;
     }
   }
+  async login(email: string,password:string): Promise<void> {
+    try {
+      const response = await fetch(this.apiUrl+"/login", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({email:email,password:password})
+      });
+      if (!response.ok) {
+        throw new Error(`Failed to connect: ${response.statusText}`);
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 

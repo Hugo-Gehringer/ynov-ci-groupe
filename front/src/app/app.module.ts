@@ -8,12 +8,14 @@ import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserFormComponent,
-    UsersListComponent
+    UsersListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

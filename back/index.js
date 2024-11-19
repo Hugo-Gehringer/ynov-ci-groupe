@@ -11,7 +11,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Connexion à MongoDB
-mongoose.connect('mongodb://localhost:27017/project_db', {
+const dbUri = 'mongodb://admin:password@localhost:27017/project_db?authSource=admin';
+
+mongoose.connect(dbUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -28,7 +30,7 @@ const userSchema = new mongoose.Schema({
     postalCode: String,
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('user', userSchema);
 
 // Create a new user
 app.post('/users', (req, res) => {

@@ -6,13 +6,13 @@
 /front/out-tsc
 /front/bazel-out
 
-/back/mongoDB/data
 # Node
 /front/node_modules
 /back/node_modules
 npm-debug.log
 yarn-error.log
 /back/mongoDB/data/*
+/back/package-lock.json
 
 # IDEs and editors
 *.idea

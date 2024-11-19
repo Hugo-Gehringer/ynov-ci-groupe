@@ -1,8 +1,8 @@
 db = db.getSiblingDB('project_db');
 
-db.createCollection('user');
+db.createCollection('users');
 
-db.user.insertOne({
+db.users.insertOne({
   firstName: "Admin",
   lastName: "Admin",
   email: "admin@admin.com",

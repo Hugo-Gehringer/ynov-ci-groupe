@@ -15,11 +15,11 @@ async function checkDatabase() {
     const collections = await db.listCollections().toArray();
     console.log("Collections in the database:", collections);
 
-    const userCollectionExists = collections.some(collection => collection.name === 'user');
+    const userCollectionExists = collections.some(collection => collection.name === 'users');
     if (userCollectionExists) {
-      console.log("The 'user' collection exists.");
+      console.log("The 'users' collection exists.");
 
-      const userCollection = db.collection('user');
+      const userCollection = db.collection('users');
       const adminUser = await userCollection.findOne({ firstName: 'Admin' });
 
       if (adminUser) {
@@ -28,7 +28,7 @@ async function checkDatabase() {
         console.log("The Admin user does not exist.");
       }
     } else {
-      console.log("The 'user' collection does not exist.");
+      console.log("The 'users' collection does not exist.");
     }
 
   } catch (err) {

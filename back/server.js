@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-require('dotenv').config({path: '/.env'});
+require('dotenv').config({path: '.env'});
 const port = 3000;
 
 app.use(bodyParser.json());

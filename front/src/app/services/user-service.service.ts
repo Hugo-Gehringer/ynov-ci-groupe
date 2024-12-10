@@ -38,6 +38,7 @@ export class UserService {
       throw new Error('Failed to fetch users');
     }
     this.users = await response.json();
+    console.log(this.users);
     return this.users;
   }
 
@@ -68,8 +69,6 @@ export class UserService {
    * @param {number} id - The id of the user to delete.
    */
   async deleteUser(id: number): Promise<void> {
-    console.log(this.users)
-    console.log(id);
     try {
       const response = await fetch(this.apiUrl + "/users/" + id, {
         method: 'DELETE',
@@ -118,7 +117,6 @@ export class UserService {
   }
 
   userId(): number {
-    console.log(this.user?._id);
     return this.user?._id || -1;
   }
 }

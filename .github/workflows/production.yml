@@ -28,7 +28,7 @@ jobs:
 
       - name: npm ci and test
         run: |
-          cd front
+          cd back
           npm ci
           npm run test
 

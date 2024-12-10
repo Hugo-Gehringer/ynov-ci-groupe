@@ -19,16 +19,5 @@
     "postalCode": "34000",
     "isAdmin": false,
     "__v": 0
-  },
-  {
-    "_id": "3",
-    "firstName": "c",
-    "lastName": "d",
-    "email": "c@d.com",
-    "birthDate": "2001-02-02T00:00:00.000Z",
-    "city": "Montpellier",
-    "postalCode": "34000",
-    "isAdmin": false,
-    "__v": 0
   }
 ]

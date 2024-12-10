@@ -11,7 +11,7 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-const dbUri = process.env.MONGO_DB_URL;
+const dbUri = process.env.MONGO_DBURL;
 
 mongoose.connect(dbUri, {
     useNewUrlParser: true,

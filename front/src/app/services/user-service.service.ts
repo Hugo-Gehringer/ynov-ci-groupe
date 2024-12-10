@@ -37,8 +37,7 @@ export class UserService {
     if (!response.ok) {
       throw new Error('Failed to fetch users');
     }
-    this.users = await response.json();
-    return this.users;
+    this.users = await response.json()
   }
 
   /**
@@ -77,7 +76,7 @@ export class UserService {
       });
       if (!response.ok) {
         throw new Error(`Failed to delete user: ${response.statusText}`);
-      }else {
+      } else {
         this.getUsers();
       }
     } catch (error) {
@@ -132,6 +131,7 @@ export interface User {
   postalCode: string;
   isAdmin: boolean;
 }
+
 export interface AddUser {
   firstName: string;
   lastName: string;

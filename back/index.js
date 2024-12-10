@@ -9,7 +9,7 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-const dbUri = 'mongodb://admin:password@mongo_db:27017/project_db?authSource=admin';
+const dbUri = 'mongodb://admin:password@localhost:27017/project_db?authSource=admin';
 
 mongoose.connect(dbUri, {
     useNewUrlParser: true,

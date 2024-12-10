@@ -68,6 +68,8 @@ export class UserService {
    * @param {number} id - The id of the user to delete.
    */
   async deleteUser(id: number): Promise<void> {
+    console.log(this.users)
+    console.log(id);
     try {
       const response = await fetch(this.apiUrl + "/users/" + id, {
         method: 'DELETE',
@@ -77,6 +79,8 @@ export class UserService {
       });
       if (!response.ok) {
         throw new Error(`Failed to delete user: ${response.statusText}`);
+      }else {
+        this.getUsers();
       }
     } catch (error) {
       throw error;
@@ -96,7 +100,6 @@ export class UserService {
         throw new Error(`Failed to connect: ${response.statusText}`);
       }
       this.user = await response.json();
-      console.log(this.user);
     } catch (error) {
       throw error;
     }
@@ -114,14 +117,15 @@ export class UserService {
     return this.user !== null && this.user.isAdmin;
   }
 
-  userId(): number | null {
-    return this.user !== null ? this.user.id : null;
+  userId(): number {
+    console.log(this.user?._id);
+    return this.user?._id || -1;
   }
 }
 
 
 export interface User {
-  id: number;
+  _id: number;
   firstName: string;
   lastName: string;
   email: string;

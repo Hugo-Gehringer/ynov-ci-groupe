@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
 
-const uri = "mongodb://admin:password@localhost:27017/?authSource=admin";
+const uri = "mongodb+srv://gehringerhugo:czdsi388bFsr81DT@cluster0.0v0lc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
 const dbName = 'project_db';
 
 async function checkDatabase() {

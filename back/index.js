@@ -1,15 +1,17 @@
 const express = require('express');
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
 const app = express();
+
+require('dotenv').config({path: '../.env'});
 const port = 3000;
 
 app.use(bodyParser.json());
 app.use(cors());
 
-const dbUri = "mongodb+srv://gehringerhugo:czdsi388bFsr81DT@cluster0.0v0lc.mongodb.net/project_db?retryWrites=true&w=majority&appName=Cluster0";
+const dbUri = process.env.MONGO_DB_URL;
 
 mongoose.connect(dbUri, {
     useNewUrlParser: true,

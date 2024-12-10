@@ -11,7 +11,8 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-const dbUri = process.env.MONGO_DBURL;
+// const dbUri = process.env.MONGO_DBURL;
+const dbUri = "mongodb+srv://gehringerhugo:czdsi388bFsr81DT@cluster0.0v0lc.mongodb.net/project_db?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose.connect(dbUri, {
     useNewUrlParser: true,

@@ -17,7 +17,7 @@ describe('UserServiceService', () => {
 
     it('should return the age of the person', () => {
       const test: User = {
-        id: 1,
+        _id: 1,
         firstName: 'test',
         lastName: 'test',
         email: 'test',
@@ -47,7 +47,7 @@ describe('UserServiceService', () => {
 
     it('should throw an error if the birth property is not a Date object', () => {
       const personWithInvalidBirth: User = {
-        id: 1,
+        _id: 1,
         firstName: 'test',
         lastName: 'test',
         email: 'test',
@@ -62,7 +62,7 @@ describe('UserServiceService', () => {
 
     it('should throw an error if the birth property is an invalid Date object', () => {
       const personWithInvalidBirthDate: User = {
-        id: 1,
+        _id: 1,
         firstName: 'test',
         lastName: 'test',
         email: 'test',
@@ -77,7 +77,7 @@ describe('UserServiceService', () => {
 
     it('should return the correct age even next year', () => {
       const user: User = {
-        id: 1,
+        _id: 1,
         firstName: 'test',
         lastName: 'test',
         email: 'test',
@@ -97,7 +97,7 @@ describe('UserServiceService', () => {
 
   describe('addUser', () => {
     const user: User = {
-      id: 1,
+      _id: 1,
       firstName: 'John',
       lastName: 'Doe',
       email: 'john.doe@example.com',
@@ -171,7 +171,7 @@ describe('UserServiceService', () => {
     it('should fetch the list of users successfully', async () => {
       const mockUsers: User[] = [
         {
-          id: 1,
+          _id: 1,
           firstName: 'John',
           lastName: 'Doe',
           email: 'john.doe@example.com',

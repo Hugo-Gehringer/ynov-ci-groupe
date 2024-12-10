@@ -38,6 +38,7 @@ export class UserService {
       throw new Error('Failed to fetch users');
     }
     this.users = await response.json()
+    return this.users;
   }
 
   /**

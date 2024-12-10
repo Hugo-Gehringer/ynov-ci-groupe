@@ -116,7 +116,7 @@ describe('UserServiceService', () => {
 
       try {
         await service.addUser(user);
-        expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users', {
+        expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe-hugo-gehringers-projects.vercel.app/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -140,7 +140,7 @@ describe('UserServiceService', () => {
       } catch (error) {
         expect(error).toEqual(new Error('Failed to add user: Internal Server Error'));
       }
-      expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users', {
+      expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe-hugo-gehringers-projects.vercel.app/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -157,7 +157,7 @@ describe('UserServiceService', () => {
       } catch (error) {
         expect(error).toEqual(new Error('Network Error'));
       }
-      expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users', {
+      expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe-hugo-gehringers-projects.vercel.app/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -190,7 +190,7 @@ describe('UserServiceService', () => {
 
       const users = await service.getUsers();
       expect(users).toEqual(mockUsers);
-      expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users');
+      expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe-hugo-gehringers-projects.vercel.app/users');
     });
 
     it('should throw an error if fetching users fails', async () => {
@@ -204,7 +204,7 @@ describe('UserServiceService', () => {
       } catch (error) {
         expect(error).toEqual(new Error('Failed to fetch users'));
       }
-      expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users');
+      expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe-hugo-gehringers-projects.vercel.app/users');
     });
 
     it('should throw an error if fetch throws an error', async () => {
@@ -215,7 +215,7 @@ describe('UserServiceService', () => {
       } catch (error) {
         expect(error).toEqual(new Error('Network Error'));
       }
-      expect(fetch).toHaveBeenCalledWith('http://localhost:3000/users');
+      expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe-hugo-gehringers-projects.vercel.app/users');
     });
   });
 });

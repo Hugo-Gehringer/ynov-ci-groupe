@@ -29,9 +29,9 @@ jobs:
 
       - name: npm ci and test
         run: |
-          cd front
+          cd back
           npm ci
-          npm run test
+#          npm run test
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest

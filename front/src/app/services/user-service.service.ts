@@ -78,7 +78,7 @@ export class UserService {
       if (!response.ok) {
         throw new Error(`Failed to delete user: ${response.statusText}`);
       } else {
-        this.getUsers();
+        await this.getUsers();
       }
     } catch (error) {
       throw error;

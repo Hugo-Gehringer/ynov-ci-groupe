@@ -19,5 +19,13 @@
       "src": "/(.*)",
       "dest": "server.js"
     }
-  ]
+  ],
+  "git": {
+    "ignoreBuildFiles": [
+      "front"
+    ],
+    "deploymentEnabled": {
+      "main": false
+    }
+  }
 }

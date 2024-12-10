@@ -7,7 +7,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'https://ynov-ci-groupe-hugo-gehringers-projects.vercel.app';
+  private apiUrl = 'https://ynov-ci-groupe.vercel.app/';
   public users: User[] = [];
   public user: User | null = null;
 

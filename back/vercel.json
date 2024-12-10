@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "back/server.js",
+      "src": "server.js",
       "use": "@vercel/node",
       "config": {
         "includeFiles": [
-          "back/**"
+          "**"
         ],
         "ignore": [
-          "front/**"
+          "../front/**"
         ]
       }
     }
@@ -17,12 +17,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "back/server.js"
+      "dest": "server.js"
     }
-  ],
-  "git": {
-    "deploymentEnabled": {
-      "main": false
-    }
-  }
+  ]
 }

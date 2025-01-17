@@ -25,8 +25,8 @@ describe('User API Tests', () => {
     });
 
     afterAll(async () => {
-        // Disconnect from the test database
         await mongoose.connection.close();
+        await mongoose.disconnect();
     });
 
     it('should create a new user', async () => {

@@ -1,6 +1,6 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
-const app = require('../server');
+const { app, server } = require('../server');
 
 const testUser = {
     firstName: 'Test',
@@ -22,7 +22,9 @@ describe('User API Tests', () => {
 
     afterAll(async () => {
         await mongoose.connection.close();
-        await new Promise(resolve => app.close(resolve));
+        if (server) {
+            await new Promise(resolve => server.close(resolve));
+        }
     });
 
 

@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const dbUri = process.env.MONGO_DBURL;
-
+let server;
 mongoose.connect(dbUri)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log('Failed to connect to MongoDB', err));
@@ -132,8 +132,9 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-});
-
-module.exports = app;
+if (process.env.NODE_ENV !== 'test') {
+    server = app.listen(port, () => {
+        console.log(`Server is running at http://localhost:${port}`);
+    });
+}
+module.exports = {app, server};

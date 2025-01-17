@@ -18,10 +18,7 @@ describe('User API Tests', () => {
 
     beforeAll(async () => {
         // Connect to a test database
-        await mongoose.connect(process.env.MONGO_DBURL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(process.env.MONGO_DBURL);
     });
 
     afterAll(async () => {

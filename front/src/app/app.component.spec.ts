@@ -5,7 +5,6 @@ import {UserFormComponent} from './components/user-form/user-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
 
 describe('AppComponent', () => {
   beforeEach(async () => {

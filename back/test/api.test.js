@@ -17,15 +17,14 @@ describe('User API Tests', () => {
     let userId;
 
     beforeAll(async () => {
-        // Connect to a test database
         await mongoose.connect(process.env.MONGO_DBURL);
     });
 
     afterAll(async () => {
         await mongoose.connection.close();
-        await mongoose.disconnect();
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => app.close(resolve));
     });
+
 
     it('should create a new user', async () => {
         const res = await request(app)

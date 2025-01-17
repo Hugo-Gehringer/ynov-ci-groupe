@@ -1,17 +1,17 @@
 {
   "name": "hugo-gehringer-cicd",
-  "homepage": "https://hugo-gehringer.github.io/deploiement-angular-form/",
+  "homepage": "https://hugo-gehringer.github.io/ynov-ci-groupe/",
   "version": "0.0.7",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href=/deploiement-angular-form/",
+    "build": "ng build --base-href=/ynov-ci-groupe/",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "cypress": "cypress open",
     "test:coverage": "jest --coverage",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist/ynov-deploiement-formulaire-angular --repo https://github.com/Hugo-Gehringer/deploiement-angular-form.git",
+    "deploy": "gh-pages -d dist/ynov-ci-groupe --repo https://github.com/Hugo-Gehringer/ynov-ci-groupe.git",
     "jsdoc": "typedoc",
     "build-npm": "NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src --out-dir dist --copy-files"
   },

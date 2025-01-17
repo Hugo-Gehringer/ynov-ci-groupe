@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'ynov-deploiement-formulaire-angular';
+  title = 'ynov-ci-groupe';
 }

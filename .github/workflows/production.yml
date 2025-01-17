@@ -30,7 +30,6 @@ jobs:
       - name: npm ci and test
         run: |
           cd back
-#          npm ci
           npm run test -- --detectOpenHandles
 
       - name: Install Vercel CLI

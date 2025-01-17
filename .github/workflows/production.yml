@@ -31,7 +31,7 @@ jobs:
         run: |
           cd back
           npm ci
-          npm run test -- --forceExit
+          npm run test -- --detectOpenHandles --forceExit
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest

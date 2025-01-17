@@ -24,6 +24,7 @@ describe('User API Tests', () => {
     afterAll(async () => {
         await mongoose.connection.close();
         await mongoose.disconnect();
+        await new Promise(resolve => setTimeout(resolve, 500));
     });
 
     it('should create a new user', async () => {

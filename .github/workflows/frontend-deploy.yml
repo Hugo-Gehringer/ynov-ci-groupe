@@ -27,6 +27,23 @@ jobs:
           npm run build --if-present
           npm test
 
+      - name: Build Docker Image
+        run: |
+          cd docker
+          docker build -t my-frontend-app .
+
+      - name: Start Docker Compose
+        run: |
+          cd docker
+          docker compose up -d
+
+      - name: Verify Running Containers
+        run: docker ps
+
+      - name: Show Logs of Frontend Container
+        run: |
+          docker logs $(docker ps --filter "name=my-frontend-app" --format "{{.ID}}")
+
       - name: Set up GitHub Pages
         id: pages
         uses: actions/configure-pages@v3

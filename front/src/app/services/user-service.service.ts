@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {environment} from '../environment/environment';
 
 /**
  * Service to handle user-related operations.
@@ -7,12 +8,11 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'https://ynov-ci-groupe.vercel.app';
+  private apiUrl = environment.apiUrl;
   public users: User[] = [];
   public user: User | null = null;
 
-  constructor() {
-  }
+  constructor() {}
 
   /**
    * Calculates the age based on the birthdate.

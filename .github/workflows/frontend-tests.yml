@@ -2,7 +2,7 @@ name: Frontend Tests
 
 on:
   repository_dispatch:
-    types: [ backend_deployed ]
+    types: [ test_frontend ]
 
 jobs:
   test:
@@ -60,4 +60,4 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.PERSONNAL_ACCESS_TOKEN }}"\
             -H "X-GitHub-Api-Version: 2022-11-28"\
             https://api.github.com/repos/${{ github.repository }}/dispatches\
-            -d '{"event_type": "frontend_tests_passed"}'
+            -d '{"event_type": "deploy_frontend"}'

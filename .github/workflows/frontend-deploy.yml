@@ -2,7 +2,7 @@ name: Frontend Build & Deploy
 
 on:
   repository_dispatch:
-    types: [frontend_tests_passed]
+    types: [deploy_frontend]
 
 jobs:
   build_test:

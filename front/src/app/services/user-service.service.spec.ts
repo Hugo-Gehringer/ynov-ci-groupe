@@ -27,7 +27,7 @@ describe('UserServiceService', () => {
         birthDate: new Date('01/04/1999'),
         isAdmin: false
       };
-      expect(service.calculateAge(test.birthDate)).toBe(25);
+      expect(service.calculateAge(test.birthDate)).toBe(26);
     });
 
     it('should throw an error if no arguments are passed', () => {

@@ -34,3 +34,31 @@
 .styled-table th {
   font-weight: bold;
 }
+
+.deleteButton {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    background: #ff0000;
+  }
+}
+
+.disconnectButton {
+  background: #3497da;
+  color: white;
+  border: none;
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    background: #007bff;
+  }
+}

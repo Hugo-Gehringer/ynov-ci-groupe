@@ -27,11 +27,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-#      - name: npm ci and test
-#        run: |
-#          cd back
-#          npm ci
-#          npm run test -- --forceExit
+      - name: npm ci and test
+        run: |
+          cd back
+          npm ci
+          npm run test -- --forceExit
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest

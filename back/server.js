@@ -1,5 +1,6 @@
 const express = require('express');
-
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc'); // Add this line
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -14,6 +15,12 @@ app.use(cors());
 const dbUri = process.env.MONGO_DBURL;
 let server;
 mongoose.connect(dbUri)
+
+
+mongoose.connect(dbUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log('Failed to connect to MongoDB', err));
 
@@ -31,7 +38,64 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('Users', userSchema);
 
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'API',
+            version: '1.0.0',
+            description: 'API documentation',
+        },
+        servers: [
+            {
+                url: 'http://localhost:3000',
+            },
+        ],
+    },
+    apis: ['./server.js'],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+
+
 // Endpoint pour créer un nouvel utilisateur (enregistre le mot de passe haché)
+/**
+ * @swagger
+ * /users:
+ *   post:
+ *     summary: Create a new user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               birthDate:
+ *                 type: string
+ *                 format: date
+ *               city:
+ *                 type: string
+ *               postalCode:
+ *                 type: string
+ *               isAdmin:
+ *                 type: boolean
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *       500:
+ *         description: Internal server error
+ */
 app.post('/users', async (req, res) => {
     const {firstName, lastName, email, password, birthDate, city, postalCode, isAdmin} = req.body;
 
@@ -55,6 +119,39 @@ app.post('/users', async (req, res) => {
 });
 
 // Endpoint pour lister tous les utilisateurs (sans le mot de passe)
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: List all users
+ *     responses:
+ *       200:
+ *         description: A list of users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   firstName:
+ *                     type: string
+ *                   lastName:
+ *                     type: string
+ *                   email:
+ *                     type: string
+ *                   birthDate:
+ *                     type: string
+ *                     format: date
+ *                   city:
+ *                     type: string
+ *                   postalCode:
+ *                     type: string
+ *                   isAdmin:
+ *                     type: boolean
+ *       500:
+ *         description: Internal server error
+ */
 app.get('/users', (req, res) => {
     User.find({}, '-password') // Exclut le champ password
         .then(users => res.status(200).json(users))
@@ -62,6 +159,45 @@ app.get('/users', (req, res) => {
 });
 
 // Endpoint pour obtenir un utilisateur par ID (sans le mot de passe)
+/**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     summary: Get a user by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 firstName:
+ *                   type: string
+ *                 lastName:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 birthDate:
+ *                   type: string
+ *                   format: date
+ *                 city:
+ *                   type: string
+ *                 postalCode:
+ *                   type: string
+ *                 isAdmin:
+ *                   type: boolean
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
 app.get('/users/:id', (req, res) => {
     const userId = req.params.id;
 
@@ -76,6 +212,49 @@ app.get('/users/:id', (req, res) => {
 });
 
 // Endpoint pour mettre à jour un utilisateur
+/**
+ * @swagger
+ * /users/{id}:
+ *   put:
+ *     summary: Update a user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               birthDate:
+ *                 type: string
+ *                 format: date
+ *               city:
+ *                 type: string
+ *               postalCode:
+ *                 type: string
+ *               isAdmin:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
 app.put('/users/:id', (req, res) => {
     const userId = req.params.id;
     const {firstName, lastName, email, password, birthDate, city, postalCode, isAdmin} = req.body;
@@ -101,6 +280,25 @@ app.put('/users/:id', (req, res) => {
 });
 
 // Endpoint pour supprimer un utilisateur
+/**
+ * @swagger
+ * /users/{id}:
+ *   delete:
+ *     summary: Delete a user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User deleted successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
 app.delete('/users/:id', (req, res) => {
     const userId = req.params.id;
 
@@ -115,6 +313,32 @@ app.delete('/users/:id', (req, res) => {
 });
 
 // Endpoint pour la connexion
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: User login
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login successful
+ *       401:
+ *         description: Invalid email or password
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
 app.post('/login', async (req, res) => {
     const {email, password} = req.body;
     try {

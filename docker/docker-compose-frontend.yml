@@ -2,6 +2,6 @@ version: '3.8'
 
 services:
   angular:
-    build: ./front
+    build: ../front
     ports:
       - "4200:4200"

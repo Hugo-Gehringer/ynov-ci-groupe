@@ -12,7 +12,7 @@ services:
       - ./data:/back/data/db
       - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js
   nodejs:
-    build: ./back
+    build: ../back
     ports:
       - 3000:3000
     environment:
@@ -20,4 +20,4 @@ services:
     depends_on:
       - mongo
     volumes:
-      - ./back:/usr/src/app
+      - ../back:/usr/src/app

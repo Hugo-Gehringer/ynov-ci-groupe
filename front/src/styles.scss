@@ -14,6 +14,11 @@
 }
 
 app-root {
+  font-family: 'Trebuchet MS';
+
+  label{
+    font-size: 12px;
+  }
   app-login {
     display: flex;
     justify-content: center;

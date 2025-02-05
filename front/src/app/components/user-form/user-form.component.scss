@@ -58,8 +58,21 @@ button:focus {
   color: #e74c3c;
   font-size: 0.875em;
 }
-a{
+a {
   display: flex;
   margin-top: 10px;
   justify-content: center;
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+a:active {
+  color: #003f80;
 }

@@ -2,9 +2,9 @@ name: Frontend Tests
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   test:
@@ -31,10 +31,19 @@ jobs:
           cd front
           npx jest --coverage
 
+      - name: Verify Cypress installation
+        run: |
+          cd front
+          npx cypress verify
+
       - name: Run Cypress E2E tests
         uses: cypress-io/github-action@v6
         with:
           working-directory: front
+          start: "npm start"
+          wait-on: "http://localhost:4200"
+          browser: chrome
+          headless: true
 
       - name: Upload test coverage to Codecov
         uses: codecov/codecov-action@v4

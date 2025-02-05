@@ -1,5 +1,6 @@
 import {User, UserService} from './user-service.service';
 import {TestBed} from '@angular/core/testing';
+import {environment} from '../environment/environment';
 
 describe('UserServiceService', () => {
   let service: UserService;
@@ -116,7 +117,7 @@ describe('UserServiceService', () => {
 
       try {
         await service.addUser(user);
-        expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe.vercel.app/users', {
+        expect(fetch).toHaveBeenCalledWith(environment.apiUrl+'/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -140,7 +141,7 @@ describe('UserServiceService', () => {
       } catch (error) {
         expect(error).toEqual(new Error('Failed to add user: Internal Server Error'));
       }
-      expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe.vercel.app/users', {
+      expect(fetch).toHaveBeenCalledWith(environment.apiUrl+'/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -157,7 +158,7 @@ describe('UserServiceService', () => {
       } catch (error) {
         expect(error).toEqual(new Error('Network Error'));
       }
-      expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe.vercel.app/users', {
+      expect(fetch).toHaveBeenCalledWith(environment.apiUrl+'/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -190,7 +191,7 @@ describe('UserServiceService', () => {
 
       const users = await service.getUsers();
       expect(users).toEqual(mockUsers);
-      expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe.vercel.app/users');
+      expect(fetch).toHaveBeenCalledWith(environment.apiUrl+'/users');
     });
 
     it('should throw an error if fetching users fails', async () => {
@@ -204,7 +205,7 @@ describe('UserServiceService', () => {
       } catch (error) {
         expect(error).toEqual(new Error('Failed to fetch users'));
       }
-      expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe.vercel.app/users');
+      expect(fetch).toHaveBeenCalledWith(environment.apiUrl+'/users');
     });
 
     it('should throw an error if fetch throws an error', async () => {
@@ -215,7 +216,7 @@ describe('UserServiceService', () => {
       } catch (error) {
         expect(error).toEqual(new Error('Network Error'));
       }
-      expect(fetch).toHaveBeenCalledWith('https://ynov-ci-groupe.vercel.app/users');
+      expect(fetch).toHaveBeenCalledWith(environment.apiUrl+'/users');
     });
   });
 });

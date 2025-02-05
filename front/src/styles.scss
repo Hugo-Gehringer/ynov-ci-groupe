@@ -12,3 +12,16 @@
     min-width: 300px;
   }
 }
+
+app-root {
+  app-login {
+    display: flex;
+    justify-content: center;
+  }
+
+  app-user-form {
+    display: flex;
+    justify-content: center;
+  }
+}
+

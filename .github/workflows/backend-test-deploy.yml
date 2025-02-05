@@ -53,15 +53,10 @@ jobs:
           cd back
           vercel deploy --token=${{ secrets.VERCEL_TOKEN }} --prod
 
-      - name: Build Docker Image
+      - name: Build Docker Image and Start Container
         run: |
-          cd back/docker
-          docker compose build
-
-      - name: Start Docker Compose
-        run: |
-          cd back/docker
-          docker compose up -d
+          docker compose -f docker-compose-backend.yml build
+          docker compose -f docker-compose-backend.yml up -d 
 
       - name: Verify Running Containers
         run: docker ps

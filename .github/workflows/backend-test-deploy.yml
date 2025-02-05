@@ -55,12 +55,12 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          cd docker
+          cd back/docker
           docker compose build
 
       - name: Start Docker Compose
         run: |
-          cd docker
+          cd back/docker
           docker compose up -d
 
       - name: Verify Running Containers

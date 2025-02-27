@@ -2,9 +2,9 @@
 
 [![codecov](https://codecov.io/gh/Hugo-Gehringer/deploiement-angular-form/graph/badge.svg?token=A1NUV73I0R)](https://codecov.io/gh/Hugo-Gehringer/deploiement-angular-form)
 
-Lien du déploiement : [https://hugo-gehringer.github.io/deploiement-angular-form/](https://hugo-gehringer.github.io/deploiement-angular-form/)
-Lien de la doc : [https://hugo-gehringer.github.io/deploiement-angular-form/docs](https://hugo-gehringer.github.io/deploiement-angular-form/docs)
-
+Lien du déploiement : [https://hugo-gehringer.github.io/ynov-ci-groupe/](https://hugo-gehringer.github.io/ynov-ci-groupe)
+Lien de la doc : [https://hugo-gehringer.github.io/ynov-ci-groupe/docs](https://hugo-gehringer.github.io/ynov-ci-groupe/docs)
+Lien du back sur vercel : https://ynov-ci-groupe.vercel.app/
 ## Frontend
 
 ### Development server
@@ -27,6 +27,20 @@ Run `ng test` to execute the unit tests via [Jest](https://jestjs.io).
 
 Run `npm run test:coverage` to generate the code coverage report. The report will be available in the `coverage/` directory.
 
+### Docker
+
+To build and run the frontend using Docker:
+
+1. Build the Docker image:
+    ```sh
+    docker build -t frontend-image -f front/Dockerfile .
+    ```
+
+2. Run the Docker container:
+    ```sh
+    docker run -p 4200:80 frontend-image
+    ```
+
 ## Backend
 
 ### Development server
@@ -40,6 +54,20 @@ Run `npm test` to execute the unit tests via [Jest](https://jestjs.io).
 ### Code Coverage
 
 Run `npm run test:coverage` to generate the code coverage report. The report will be available in the `coverage/` directory.
+
+### Docker
+
+To build and run the backend using Docker:
+
+1. Build the Docker image:
+    ```sh
+    docker build -t backend-image -f back/Dockerfile .
+    ```
+
+2. Run the Docker container:
+    ```sh
+    docker run -p 3000:3000 backend-image
+    ```
 
 ## Further help
 

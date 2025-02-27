@@ -3,8 +3,10 @@
 [![codecov](https://codecov.io/gh/Hugo-Gehringer/deploiement-angular-form/graph/badge.svg?token=A1NUV73I0R)](https://codecov.io/gh/Hugo-Gehringer/deploiement-angular-form)
 
 Lien du déploiement : [https://hugo-gehringer.github.io/ynov-ci-groupe/](https://hugo-gehringer.github.io/ynov-ci-groupe)
-Lien de la doc : [https://hugo-gehringer.github.io/ynov-ci-groupe/docs](https://hugo-gehringer.github.io/ynov-ci-groupe/docs)
-Lien du back sur vercel : https://ynov-ci-groupe.vercel.app/
+
+Lien de la documentation : [https://hugo-gehringer.github.io/ynov-ci-groupe/docs](https://hugo-gehringer.github.io/ynov-ci-groupe/docs)
+
+Lien du backend sur vercel : https://ynov-ci-groupe.vercel.app/
 ## Frontend
 
 ### Development server
@@ -29,18 +31,13 @@ Run `npm run test:coverage` to generate the code coverage report. The report wil
 
 ### Docker
 
-To build and run the frontend using Docker:
+To build and run the frontend using Docker, go to the docker directory:
 
-1. Build the Docker image:
-    ```sh
-    docker build -t frontend-image -f front/Dockerfile .
-    ```
-
-2. Run the Docker container:
-    ```sh
-    docker run -p 4200:80 frontend-image
-    ```
-
+Build and run the Docker image:
+```sh
+    docker compose -f docker-compose-frontend.yml up -d --build
+```
+If you want change the api url, you can change the variable in the environment.ts file in the front/src/app/environment.
 ## Backend
 
 ### Development server
@@ -57,17 +54,12 @@ Run `npm run test:coverage` to generate the code coverage report. The report wil
 
 ### Docker
 
-To build and run the backend using Docker:
+To build and run the backend using Docker, go to the docker directory:
 
-1. Build the Docker image:
-    ```sh
-    docker build -t backend-image -f back/Dockerfile .
-    ```
-
-2. Run the Docker container:
-    ```sh
-    docker run -p 3000:3000 backend-image
-    ```
+Build and run the Docker image:
+```sh
+    docker compose -f docker-compose-backend.yml up -d --build
+```
 
 ## Further help
 

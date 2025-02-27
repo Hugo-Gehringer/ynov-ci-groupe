@@ -9,7 +9,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./data:/back/data/db
+      - ./data:/data/db
       - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js
   nodejs:
     build: ../back

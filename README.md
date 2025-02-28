@@ -7,6 +7,9 @@ Lien du déploiement : [https://hugo-gehringer.github.io/ynov-ci-groupe/](https:
 Lien de la doc : [https://hugo-gehringer.github.io/ynov-ci-groupe/docs](https://hugo-gehringer.github.io/ynov-ci-groupe/docs)
 
 Lien du back sur vercel : https://ynov-ci-groupe.vercel.app/
+
+lien du swagger back : https://ynov-ci-groupe.vercel.app/api-docs
+
 ## Frontend
 
  ```sh

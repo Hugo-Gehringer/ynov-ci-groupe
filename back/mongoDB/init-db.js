@@ -13,8 +13,8 @@ async function main() {
     await db.collection('users').insertOne({
       firstName: "Admin",
       lastName: "Admin",
-      email: "admin@admin.com",
-      password: "a",
+      email: "loise.fenoll@ynov.com",
+      password: "ANKymoUTFu4rbybmQ9Mt",
       birthDate: new Date("1990-01-01"),
       city: "Montpellier",
       postalCode: "34000",

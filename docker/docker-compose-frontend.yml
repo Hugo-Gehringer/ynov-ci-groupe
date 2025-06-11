@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   angular:
+    image: frontend-image
     build: ../front
     ports:
       - "4200:4200"

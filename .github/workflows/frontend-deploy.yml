@@ -27,11 +27,10 @@ jobs:
           npm run build --if-present --configuration=production
           npm test
 
-      - name: Build Docker Image and Start Container
+      - name: Build Docker image
         run: |
-          cd docker
-          docker compose -f docker-compose-frontend.yml build
-          docker compose -f docker-compose-frontend.yml up -d
+          docker build -f Dockerfile -t ynov-ci-groupe-frontend:latest .
+          docker run -d --name frontend-container ynov-ci-groupe-frontend:latest
 
       - name: Run Trivy vulnerability scanner on Docker image
         uses: aquasecurity/trivy-action@0.28.0

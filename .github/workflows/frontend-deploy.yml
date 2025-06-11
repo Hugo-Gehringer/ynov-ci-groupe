@@ -1,8 +1,8 @@
 name: Frontend Build & Deploy
 
 on:
-  repository_dispatch:
-    types: [ deploy_frontend ]
+  push:
+    branches: [ main ]
 
 jobs:
   build_test:

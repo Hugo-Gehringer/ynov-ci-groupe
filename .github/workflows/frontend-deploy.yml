@@ -31,9 +31,9 @@ jobs:
         run: |
           cd docker
           docker compose -f docker-compose-frontend.yml build
-          docker compose -f docker-compose-frontend.yml up -d         
-          
-            - name: Run Trivy vulnerability scanner on Docker image
+          docker compose -f docker-compose-frontend.yml up -d
+
+      - name: Run Trivy vulnerability scanner on Docker image
         uses: aquasecurity/trivy-action@v0.19.0
         with:
           image-ref: ynov-ci-groupe-frontend:latest
@@ -43,7 +43,6 @@ jobs:
         env:
           TRIVY_NON_SSL: "true"
         continue-on-error: true
-
 
       - name: Verify Running Containers
         run: docker ps

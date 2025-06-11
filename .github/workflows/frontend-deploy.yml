@@ -34,7 +34,7 @@ jobs:
           docker compose -f docker-compose-frontend.yml up -d
 
       - name: Run Trivy vulnerability scanner on Docker image
-        uses: aquasecurity/trivy-action@v0
+        uses: aquasecurity/trivy-action@0.28.0
         with:
           image-ref: ynov-ci-groupe-frontend:latest
           format: table

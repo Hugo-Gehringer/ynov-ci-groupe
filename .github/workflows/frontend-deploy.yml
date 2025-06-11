@@ -44,7 +44,7 @@ jobs:
       - name: Run Checkov on docker-compose
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: ./docker
+          file: docker/docker-compose-frontend.yml
           output_format: cli
 
       - name: Log in to Docker Hub

@@ -46,6 +46,7 @@ jobs:
         with:
           file: docker/docker-compose-frontend.yml
           output_format: cli
+          quiet: false
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3

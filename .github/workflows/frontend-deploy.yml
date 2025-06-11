@@ -1,8 +1,8 @@
 name: Frontend Build & Deploy
 
 on:
-  push:
-    branches: [ main ]
+  repository_dispatch:
+    types: [ deploy_frontend ]
 
 jobs:
   build_test:
@@ -44,10 +44,8 @@ jobs:
       - name: Run Checkov on docker-compose
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: .
+          file: docker/docker-compose-frontend.yml
           output_format: cli
-          quiet: false
-          continue-on-error: true
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
